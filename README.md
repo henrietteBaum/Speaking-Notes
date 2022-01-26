@@ -6,7 +6,8 @@ The project is for learning purposes only. It shows how "Text to Speech" functio
 
 Currently, only German voices are used for reading aloud.
 ___
-Sources:
+## Sources:
+
 [MDN Web-Speech-Api](https://developer.mozilla.org/de/docs/Web/API/SpeechSynthesis)
 
 **Note:** The background-image is form 
