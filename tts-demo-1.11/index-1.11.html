@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=, initial-scale=1.0">
+  <link rel="stylesheet" href="tts-1.11.css">
+  <title>Speekint Notes</title>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1>Speaking Notes <img src="./images/text-to-speech.png" alt="tts-icon" width="28px" height="28px"></h1>
+    </header>
+
+    <div class="leftMenu">
+      <div id="button-group">
+        <button id="btn-speak">Speak</button>
+        <button id="btn-clearText">Clear</button>
+      </div>
+  
+    </div>
+    <div class="mainText">
+      <textarea type="text" id="input-field" placeholder="Type Text here or open a file..."></textarea>
+    </div>  
+    
+    <div class="rightMenu">Right</div>
+    <footer>
+      <input type="file" id="btn-upload" multiple accept="text">
+    </footer>
+      
+  </div>
+  <script src="app.js"></script>
+  <script src="loadfile.js"></script>
+
+</body>
+</html>

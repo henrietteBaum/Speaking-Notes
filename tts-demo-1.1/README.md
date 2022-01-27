@@ -1,0 +1,1 @@
+Add function to load file into textarea.

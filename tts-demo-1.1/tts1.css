@@ -1,0 +1,110 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+
+#container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vp;
+  width: 100%;
+  background-image: url(./images/old-library.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  }
+
+h1 {
+  font-size: 50px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: white;
+  margin: 20px;
+  text-align: center;
+}
+
+textarea {
+  width: 70%;
+  height: 100%;
+  padding: 20px 0;
+  border-color: rgba(243, 88, 0, 0.75);
+  border-radius: 5px;
+  outline: none;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 34px;
+  background-color: rgb(241, 210, 181);
+  opacity: unset;
+}
+
+button {
+  margin: 40px 0;
+  padding: 10px 0;
+  color: white;
+  background-color: rgba(243, 88, 0, 0.4);
+  
+  border: none;
+  outline: none;
+  width: 6rem;
+  height: auto;
+  font-size: 24px;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: rgba(243, 88, 0, 0.75);
+  cursor: pointer;
+}
+
+button-group {
+  display: flex;
+}
+
+
+#btn-speak {
+  flex: 1;
+  margin-right: 1em;
+}
+
+#btn-clearText {
+  flex: 2;
+}
+
+
+/* style for input-element */
+
+::-ms-browse {
+  background-color: rgba(243, 88, 0, 0.4);
+  color: white;
+  font-size: 24px;
+  border: none;
+  border-radius: 5px;
+  width: fit-content;
+  height: auto;
+  padding: 10px;
+}
+
+::-ms-browse:hover {
+  background-color: rgba(243, 88, 0, 0.75);
+}
+
+::-webkit-file-upload-button {
+  display: inline-block;
+  position: relative;
+  background-color: rgba(243, 88, 0, 0.4);
+  color: white;
+  font-size: 24px;
+  height: auto;
+  width: fit-content;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+::-webkit-file-upload-button:hover {
+  background-color: rgba(243, 88, 0, 0.75);
+}
+

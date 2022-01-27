@@ -2,7 +2,7 @@
 
 The project is for learning purposes only. It shows how "Text to Speech" functions can be implemented. The aim is also to make the user interface accessible, especially for people with visual impairments.
 
-![image: screenshot landing-page tts-project](/images/screenshot_01.jpg)
+![image: screenshot landing-page tts-project](/images/screenshot_v1.11.png)
 
 Currently, only German voices are used for reading aloud.
 ___
