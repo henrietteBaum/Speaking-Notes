@@ -27,4 +27,9 @@ ___
 
 ___
 
+https://img.shields.io/badge/version:-v1.2.0-blue
+https://img.shields.io/badge/accessibility-yes-brightgreen
+https://img.shields.io/badge/api:-WebSpeechApi-blue
+
+
 
