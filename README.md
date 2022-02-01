@@ -29,7 +29,7 @@ ___
 <p>
 <img src="https://img.shields.io/badge/version:-v1.2.0-blue">
 <img src="https://img.shields.io/badge/accessibility-yes-brightgreen">
-<a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API">
+<a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/web_speech_api/index.md">
     <img src="https://img.shields.io/badge/api-WebSpeechApi-blue">
 </a>
 </p>
