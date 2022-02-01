@@ -95,12 +95,18 @@ button-group {
   flex: 2;
 }
 
-#btn-upload {
-  font-family: monospace;
-  font-size: medium;
-  border-color: rgba(243, 88, 0, 0.75);
+.btn-upload {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 20px;
+  color: white;
+  background-color: rgba(243, 88, 0, 0.4);
+  padding: 0.2em;
   border-radius: 5px;
-  margin-bottom: 0.2em;
+  
+}
+
+input[type='file'] {
+  display: none;
 }
 
 #file-name {

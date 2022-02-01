@@ -12,9 +12,8 @@ Add function to load file into textarea.
 1. Add function to save the content form textarea to file
 2. Input for file-name to save
 3. Update `clear`, by clicking the button textarea and file-name will be deleted.
-   
+4. Style input-file element
 
 ## ToDo:
 
- - Style input-Element
  - functionality for open several textformats like .md or (.pdf ???)

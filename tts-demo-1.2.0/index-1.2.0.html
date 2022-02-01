@@ -14,10 +14,13 @@
     </header>
 
     <div class="leftMenu">
-      <div id="button-group">
+      <div class="button-group">
         <button id="btn-speak">Speak</button>
         <button id="btn-clearText">Clear</button>
-        <button id="btn-save">Save</button>
+        <button class="btn-upload">
+          <input type="file" id="btn-upload" multiple accept="text">
+          Open file
+        </button>
       </div>
   
     </div>
@@ -27,7 +30,7 @@
     
     <div class="rightMenu">Right</div>
     <footer>
-      <input type="file" id="btn-upload" multiple accept="text">
+      <button id="btn-save">Save</button>
       <input placeholder="file name to save ..." type="text" id="file-name">
     </footer>
       
