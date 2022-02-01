@@ -26,10 +26,12 @@ ___
 [Trinity College Dublin](https://www.tcd.ie), just for private use.
 
 ___
-
-https://img.shields.io/badge/version:-v1.2.0-blue
-https://img.shields.io/badge/accessibility-yes-brightgreen
-https://img.shields.io/badge/api:-WebSpeechApi-blue
-
+<p>
+<img src="https://img.shields.io/badge/version:-v1.2.0-blue">
+<img src="https://img.shields.io/badge/accessibility-yes-brightgreen">
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API">
+    <img src="https://img.shields.io/badge/api-WebSpeechApi-blue">
+</a>
+</p>
 
 
