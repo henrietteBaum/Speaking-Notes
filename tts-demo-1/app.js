@@ -1,7 +1,7 @@
 
 const speakBtn = document.getElementById("btn-speak");
 
-function textToSpeech(params) {
+function textToSpeech() {
   const userText = document.getElementById("input-field").value;
 
   const speech = new SpeechSynthesisUtterance();
