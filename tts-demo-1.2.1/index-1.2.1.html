@@ -19,18 +19,18 @@
         <button id="btn-pause">Pause</button>
         <button id="btn-stop">Stop</button>
         <button id="btn-clearText">Clear</button>
-        <input type="file" id="file" multiple accept="text">
-        <label for="file">Open file</label>  
       </div> 
     </div>
     <div class="mainText">
-      <textarea type="text" id="input-field" placeholder="Type Text here or open a file..."></textarea>
+      <textarea type="text" id="input-field" placeholder="Type Text here or open existing file..."></textarea>
     </div>  
     
     <div class="rightMenu">Right</div>
-
+    
     <footer>
-      <button id="btn-save">Save</button>
+      <input type="file" id="file" multiple accept="text">
+      <label for="file">Open file</label>  
+      <button id="btn-save">Save file</button>
       <input placeholder="file name to save ..." type="text" id="file-name">
     </footer>
   </div>
