@@ -27,7 +27,7 @@ ___
 
 ___
 <p>
-<img src="https://img.shields.io/badge/version:-v1.2.0-blue" alt="label current version-number: 1.2.0"/>
+<img src="https://img.shields.io/badge/version:-v1.2.1-blue" alt="label current version-number: 1.2.1"/>
 <img src="https://img.shields.io/badge/accessibility-yes-brightgreen" alt="label for accessibility: yes"/>
 <a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/web_speech_api/index.md">
     <img src="https://img.shields.io/badge/api-WebSpeechApi-blue" alt="label web-speech-api: link to GitHub-Repository"/>
