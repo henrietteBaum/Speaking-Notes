@@ -2,7 +2,7 @@
 
 The project is for learning purposes only. It shows how "Text to Speech" functions can be implemented. The aim is also to make the user interface accessible, especially for people with visual impairments.
 
-![image: screenshot landing-page tts-project](./images/screenshot_v.1.2.1.jpg)
+![image: screenshot landing-page tts-project](./images/screenshot_v.1.3.0.jpg)
 
 Currently, only German voices are used for reading aloud.
 
@@ -27,7 +27,7 @@ ___
 
 ___
 <p>
-<img src="https://img.shields.io/badge/version:-v1.2.1-blue" alt="label current version-number: 1.2.1"/>
+<img src="https://img.shields.io/badge/version:-v.1.3.0-blue" alt="label current version-number: 1.3.0"/>
 <img src="https://img.shields.io/badge/accessibility-yes-brightgreen" alt="label for accessibility: yes"/>
 <a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/web_speech_api/index.md">
     <img src="https://img.shields.io/badge/api-WebSpeechApi-blue" alt="label web-speech-api: link to GitHub-Repository"/>

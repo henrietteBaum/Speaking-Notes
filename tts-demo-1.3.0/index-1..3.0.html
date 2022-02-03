@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=, initial-scale=1.0">
+  <link rel="stylesheet" href="tts-1.3.0.css">
+  <title>Speekint Notes</title>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1>Speaking Notes <img src="./images/text-to-speech.png" alt="tts-icon" width="28px" height="28px"></h1>
+    </header>
+
+    <div class="leftMenu">
+      <div class="button-group">
+        <button id="btn-speak">Speak</button>
+        <button id="btn-pause">Pause</button>
+        <button id="btn-stop">Stop</button>
+        <button id="btn-clearText">Clear</button>
+        <div class="tooltip">
+          <select id="voices"></select>
+          <span class="tooltiptext">Select a voice</span>
+        </div>      
+      </div> 
+    </div>
+    
+    <div class="mainText">
+      <textarea type="text" id="input-field" placeholder="Type Text here or open a file..."></textarea>
+    </div>  
+    
+    <div class="rightMenu">Right</div>
+    <footer>
+      <input type="file" id="file" multiple accept="text">
+      <label for="file">Open file</label>  
+      <button id="btn-save">Save file</button>
+      <input placeholder="file name to save ..." type="text" id="file-name">
+      </div>
+    </footer>
+      
+  </div>
+  <script src="app-1.3.03.js"></script>
+  <script src="loadfile.js"></script>
+  <script src="savefile.js"></script>
+  <script src="clearInput.js"></script>
+</body>
