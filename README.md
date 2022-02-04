@@ -1,4 +1,8 @@
-# Speeking Notes
+# Speaking Notes
+
+### A lightweight and accessible notetaking-app which runs in a browser-window, uses large font-sizes and Text-To-Speech.
+
+___
 
 The project is for learning purposes only. It shows how "Text to Speech" functions can be implemented using the Web-Speech-APIThe various development steps are documented separately in the respective directories. Here you will also find information on sources and further information.. The aim is also to make the user interface accessible, especially for people with visual impairments.
 
