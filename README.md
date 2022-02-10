@@ -4,7 +4,7 @@
 
 ___
 
-The project is for learning purposes only. It shows how "Text to Speech" functions can be implemented using the Web-Speech-APIThe various development steps are documented separately in the respective directories. Here you will also find information on sources and further information.. The aim is also to make the user interface accessible, especially for people with visual impairments.
+The project is for learning purpose only. It shows how "Text to Speech" functions can be implemented using the Web-Speech-APIThe various development steps are documented separately in the respective directories. Here you will also find information on sources and further information.. The aim is also to make the user interface accessible, especially for people with visual impairments.
 
 ![image: screenshot landing-page tts-project](./images/screenshot_v.1.3.0.jpg)
 

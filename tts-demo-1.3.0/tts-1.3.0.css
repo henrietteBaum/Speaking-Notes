@@ -107,6 +107,7 @@ button-group {
   color: white;
   border-radius: 5px;
 } */
+
 select {
 	display: flex;
 	margin: .3em auto;
@@ -171,8 +172,9 @@ footer > #filename {
   width: 1px;
 }
 
+/* File upload button styles */
+
 [type="file"] + label {
-  /* File upload button styles */
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 20px;
   color: white;
