@@ -4,15 +4,15 @@
 
 ___
 
-The project is for learning purpose only. It shows how "Text to Speech" functions can be implemented using the Web-Speech-APIThe various development steps are documented separately in the respective directories. Here you will also find information on sources and further information.. The aim is also to make the user interface accessible, especially for people with visual impairments.
+The project is for learning purpose only. It shows how "Text to Speech" functions can be implemented using the Web-Speech-API. The various development steps are documented separately in the respective directories. Here you will also find information on sources and further information.. The aim is also to make the user interface accessible, especially for people with visual impairments.
 
 ![image: screenshot landing-page tts-project](./images/screenshot_v.1.3.0.jpg)
 
 The various development steps are documented separately in the respective directories. Here you will also find information on used sources and further information.
 
-## Speek
+## Speak
 
-The speek-function uses the [Web Speech Api](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API).
+The speak-function uses the [Web Speech Api](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API).
 The Web Speech API enables you to incorporate voice data into web apps. The Web Speech API has two parts: 
 - SpeechSynthesis (Text-to-Speech) and 
 - SpeechRecognition (Asynchronous Speech Recognition)
@@ -26,7 +26,7 @@ ___
 
 [Stackoverflow](https://stackoverflow.com)
 
-**Note:** The background-image is form 
+**Note:** The background-image is from 
 [Trinity College Dublin](https://www.tcd.ie), just for private use.
 
 ___
