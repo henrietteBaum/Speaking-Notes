@@ -1,4 +1,4 @@
-// clear the textarea an filen-name
+// clear the textarea and filen-name
 
 const clearBtn = document.getElementById('btn-clearText');
 
