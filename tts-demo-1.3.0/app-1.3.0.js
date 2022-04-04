@@ -3,6 +3,8 @@
 const textEl = document.getElementById('input-field');
 const voiceInEl = document.getElementById('voices');
 const speakEl = document.getElementById('btn-speak');
+const pauseBtn = document.getElementById('btn-pause');
+const stopBtn = document.getElementById('btn-stop');
 
 speakEl.addEventListener('click', speakText);
 
@@ -38,3 +40,15 @@ function speakText() {
     // speak that utterance
     window.speechSynthesis.speak(utterance);
   }
+
+  pauseBtn.addEventListener('click', () => {
+    if (speechSynthesis.speaking) {
+      speechSynthesis.pause();
+    }
+  });
+  
+  stopBtn.addEventListener('click', () => {
+    speechSynthesis.resume();
+    speechSynthesis.cancel();
+  });
+  
