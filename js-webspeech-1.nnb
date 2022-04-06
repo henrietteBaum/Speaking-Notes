@@ -1,0 +1,378 @@
+{
+    "cells": [
+        {
+            "language": "markdown",
+            "source": [
+                "# Web-Speech-API\n\nSources:\nhttps://hacks.mozilla.org/2016/01/firefox-and-the-web-speech-api/\n\nhttps://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API/Using_the_Web_Speech_API#speech_synthesis\n\nhttps://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API\n\nhttps://developer.chrome.com/blog/web-apps-that-talk-introduction-to-the-speech-synthesis-api/\n\nhttps://www.sitepoint.com/talking-web-pages-and-the-speech-synthesis-api/\n\nhttps://wicg.github.io/speech-api/#tts-section"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "\n\nStartpunkt ist `window.SpechSynthesis` , diese liefert ein Objekt zurück."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "const synth = window.SpeechSynthesis;"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Stimmenauswahl\nHierfür wird zunächst ein leeres Array erstellt, das dann die auf dem Betriebssystem verfügbaren Stimmen aufnimmt. \nDie Funktion `populateVoiceList()` füllt das Array, das\ndann dazu dient, die Stimmen in einem select-Element als Optionen zur Auswahl für den Benutzer zur Verfügung zu stellen. "
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "let voiceList = [];\n\nvoiceList = SpeechSynthesis.getVoices();\n// oder\nconst synth = window.SpeechSynthesis;\nvoiceList = synth.getVoices();"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Die Funktion `getVoices()`liefert eine Liste der verfügbaren Stimmen. Jede Stimme ist ein Objekt, jeweil mit den Attributen (u.a.) `name` , `lang` und eine default-Wert `--DEFAULT`. Der default-Wert liegt vor,  wenn die gewählte Stimme die Standardstimme für die Sprachausgabe ist (also wenn `SpeechSynthesisVoice.default` den Wert `true` liefert).\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "speechSynthesis.getVoices().forEach((voice) => {\n  console.log(voice.name, voice.default ? voice.default :'');\n});"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Sind Stimmen-Array und speechSynthesis in einer Variablen gespeichert verkürzt sich der Ausdruck:"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "synth = window.SpeechSynthesis;\nvoiceList = [];\n\nvoiceList = synth.getVoices()\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Die Liste auf der Konsole ausgeben:"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "voiceList.forEach((voice) => {\n  console.log(voice.name, voice.default ? voice.default :'');\n});"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Die ausgewählte Stimme für die Sprachausgabe verwenden:"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "let utterance = new SpeechSynthesisUtterance('hello learning users!');\nurrerance.voice = speechSynthesis.getVoices().filter(function(voice) { return voice.name == 'Whisper'; })[0];\nspeechSynthesis.speak(urrerance);"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Mit zuvor gespeicherter `voiceList` und Arrow-function:"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "let utterance = new SpeechSynthesisUtterance('hello learning users!');\nurrerance.voice = voiceList.filter((voice) => { \n  return voice.lang == 'de-DE'; })[0];\nspeechSynthesis.speak(urrerance);"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Oder die Stimmenauswahl in einer Variablen speichern:"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "let deVoice = voiceList.filter((voice) => { \n  return voice.lang == 'de-DE'; })[0];"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Und die Variable `deVoice`für die Sprachausgabe verwenden:"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "let utterance = new SpeechSynthesisUtterance('hello learning users!');\nurrerance.voice = deVoice;\nspeechSynthesis.speak(urrerance);"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Dropdown für die Stimmenauswahl\n\nStatt wie im Beispiel oben das Array mit den gespeicherten Stimmen zu nach Sprache zu filtern und dann die erste Stimme aus dem gefilterten Array (`voiceList...[0]`) für die Sprachausgabe zu nutzen, kann ein Dropdown-Menu zur Stimmauswahl durch den Benutzer eingefügt werden."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "html",
+            "source": [
+                "<select> Select a voice\n  <option>voice</option>\n</select>"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "text/html",
+                            "value": [
+                                "<select> Select a voice",
+                                "  <option>voice</option>",
+                                "</select>"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Um die Stimmen in das `<select>` -tag als Opttion einzufügen, wird über die Liste mit `for` oder, wie oben mit `forEach` iteriert und für jede Stimme ein `<option>` - Element erzeugt, dessen Text den Namen der Stimme und deren Sprache anzeigt: `SpeechSyntehsis.name` und `SpeechSynthesis.lang` ."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "function populateVoiceList() {\n  voiceList = synth.getVoices();\n\n  for (i = 0; i < voiceList.length; i++) {\n    let option = document.createElement('option');\n    option.textContent = voiceList[i].name + ' (' + voiceList[i].lang + ')';\n\n    if (voices[i].default) {\n      option.textContent += ' -- DEFAULT';\n    }\n\n    option.setAttribute('data-lang', voiceList[i].lang);\n    option.setAttribute('data-name', voiceList[i].name);\n    voiceSelect.appendChild(option);\n  }\n}"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "### Exkurs: HTML data attribute\nhttps://www.w3schools.com/tags/att_data-.asp\nhttps://www.w3schools.com/tags/tryit.asp?filename=tryhtml5_global_data\n\nhttps://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes\n\nOben: `data-lang` und `data-name` \n\nDas `data-*`-Attribut wird verwendet, um eigene, benutzerdefinierte Daten zu speichern, die der Seite oder Anwendung vorbehalten sind.\n\nDas `data-*`-Attribut gibt uns die Möglichkeit, benutzerdefinierte Datenattribute in alle HTML-Elemente einzubetten.\n\nDie gespeicherten (benutzerdefinierten) Daten können dann im JavaScript der Seite verwendet werden, um die Benutzerfreundlichkeit zu erhöhen (ohne Ajax-Aufrufe oder serverseitige Datenbankabfragen).\n\nDas `data-*`-Attribut besteht aus zwei Teilen:\n\n    - dem Präfix \"data-\" \n    - und dem Attributnamen\n\n\n    Der Attributname darf keine Großbuchstaben enthalten und muss nach dem Präfix \"data-\" mindestens ein Zeichen lang sein.\n    Der Attributwert kann eine beliebige Zeichenkette sein.\n\nHinweis: Benutzerdefinierte Attribute, denen das Präfix \"data-\" vorangestellt ist, werden vom User-Agent vollständig ignoriert und sind auch für Screenreader nicht zugänglich."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Der Aufruf der Funktion `populateVoiceList()` erfolgt mit einer if-bedingung, weil Firefox die Funktion `SpeechSynthesis.onVoiceChanged` nicht unterstützt."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "populateVoiceList();\nif (speechSynthesis.onvoiceschanged !== undefined) {\n  speechSynthesis.onvoiceschanged = populateVoiceList;\n}"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## SpeechSynthesisUtterance\n\nDer vorzulesende Text wird durch Benuthereingabe in einem Textfeld erzeugt und in einer Variablen gespeichert."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "html",
+            "source": [
+                "<label for=\"note-text\">Text:</label>\n<textarea id=\"note-text\"></textarea>"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "text/html",
+                            "value": [
+                                "<label for=\"text\">Text:</label>",
+                                "<textarea id=\"text\"></textarea>"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Den Textinhalt des `<textarea>` erhält man über das Attribut `value`."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "let noteText = document.getElementById('note-text').value;"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Statt direkt einen konkreten Text zu übergeben, wie hier:"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "let utterance = new SpeechSynthesisUtterance('hello learning users!');"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "kann man nun `noteText` an SpeechSynthesisUtterance übergeben"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "let utterance = new SpeechSynthesisUtterance(noteText);"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "oder so:"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "let utterance = new SpeechSynthesisUtterance();\nutterance.voice = noteText;"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "### Weitere Atribute\n\nZusätzlich können in gleicher Weise Sprechgeschwindigkeit und Stimmhöhe bestimmt werden.\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "html",
+            "source": [
+                "<div>\n    <label for=\"rate\">Rate</label><input type=\"range\" min=\"0.5\" max=\"2\" value=\"1\" step=\"0.1\" id=\"rate\">\n    <div class=\"rate-value\">1</div>\n    <div class=\"clearfix\"></div>\n</div>\n<div>\n    <label for=\"pitch\">Pitch</label><input type=\"range\" min=\"0.5\" max=\"2\" value=\"1\" step=\"0.1\" id=\"pitch\">\n    <div class=\"pitch-value\">1</div>\n    <div class=\"clearfix\"></div>\n</div>"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "text/html",
+                            "value": [
+                                "<div>",
+                                "    <label for=\"rate\">Rate</label><input type=\"range\" min=\"0.5\" max=\"2\" value=\"1\" step=\"0.1\" id=\"rate\">",
+                                "    <div class=\"rate-value\">1</div>",
+                                "    <div class=\"clearfix\"></div>",
+                                "</div>",
+                                "<div>",
+                                "    <label for=\"pitch\">Pitch</label><input type=\"range\" min=\"0.5\" max=\"2\" value=\"1\" step=\"0.1\" id=\"pitch\">",
+                                "    <div class=\"pitch-value\">1</div>",
+                                "    <div class=\"clearfix\"></div>",
+                                "</div>"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "pitch.onchange = function () {\n  pitchValue.textContent = pitch.value;\n}\n\nrate.onchange = function () {\n  rateValue.textContent = rate.value;\n}\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Sprachausgabe starten\n\nDer Start der Sprachausgabe wird mit einem EventHandler eines Buttons oder der `onSubmit` - Funktion eines Formulars gesteuert. \nDer vorzulesende Text wird durch Benutzereingabe in einem Textfeld erzeugt (oder eine Datei wird geladen) und in einer Variablen gespeichert.\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "\nDann wird über eine Konstruktor ein neues Objekt von `SpeechSynthesisUtterance`  erzeugt, das als Parameter die Variable mit dem gespeicherten Text erhält. \n\nDie zum Vorlesen zu verwendende Stimme \n- liefert die Eigensxhaft `selectedOption` des HTML `<select>`- Elements oder\n- wird aus der Stimmenliste ggf. über einen Filter bereits vom Entwickler vorgegeben \n- wird keine Stimme festglegt, wird die default- Stimme des Betriebssystem beunutz.\n\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Abschließend wird die Funktion `speak()` mit dem `SpeechSynthesisUtterance` - Objekt, also dem in der Variablen `utterThis` gespeicherten Text als Attribut, aufgerufen."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "inputForm.onsubmit = function (event) {\n\n  event.preventDefault();\n\n  let utterThis = new SpeechSynthesisUtterance(inputTxt.value);\n  let selectedOption = voiceSelect.selectedOptions[0].getAttribute('data-name');\n  for (i = 0; i < voices.length; i++) {\n    if (voices[i].name === selectedOption) {\n      utterThis.voice = voices[i];\n    }\n  }\n  utterThis.pitch = pitch.value;\n  utterThis.rate = rate.value;\n  synth.speak(utterThis);\n}\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "___\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Pause, Beispiel:\nWenn SpeechSynthesis.pause() aufgerufen wird, wird eine Meldung zurückgegeben, die die Zeichennummer und den Namen angibt, bei denen die Sprachausgabe pausiert wurde."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "utterThis.onpause = function (event) {\n  var char = event.utterance.text.charAt(event.charIndex);\n  console.log('Speech paused at character ' + event.charIndex + ' of \"' +\n    event.utterance.text + '\", which is \"' + char + '\".');\n}\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "var synth = window.speechSynthesis;\n\nvar utterance1 = new SpeechSynthesisUtterance('How about we say this now? This is quite a long sentence to say.');\nvar utterance2 = new SpeechSynthesisUtterance('We should say another sentence too, just to be on the safe side.');\n\nsynth.speak(utterance1);\nsynth.speak(utterance2);\n\nsynth.pause(); // pauses utterances being spoken\n"
+            ],
+            "outputs": []
+        }
+    ]
+}
