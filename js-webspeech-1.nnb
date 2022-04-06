@@ -335,14 +335,14 @@
         {
             "language": "markdown",
             "source": [
-                "Abschließend wird die Funktion `speak()` mit dem `SpeechSynthesisUtterance` - Objekt, also dem in der Variablen `utterThis` gespeicherten Text als Attribut, aufgerufen."
+                "Abschließend wird die Funktion `speak()` mit dem `SpeechSynthesisUtterance` - Objekt, also dem in der Variablen `utterance` gespeicherten Text als Attribut, aufgerufen."
             ],
             "outputs": []
         },
         {
             "language": "javascript",
             "source": [
-                "inputForm.onsubmit = function (event) {\n\n  event.preventDefault();\n\n  let utterThis = new SpeechSynthesisUtterance(inputTxt.value);\n  let selectedOption = voiceSelect.selectedOptions[0].getAttribute('data-name');\n  for (i = 0; i < voices.length; i++) {\n    if (voices[i].name === selectedOption) {\n      utterThis.voice = voices[i];\n    }\n  }\n  utterThis.pitch = pitch.value;\n  utterThis.rate = rate.value;\n  synth.speak(utterThis);\n}\n"
+                "inputForm.onsubmit = function (event) {\n\n  event.preventDefault();\n\n  let utterance = new SpeechSynthesisUtterance(inputTxt.value);\n  let selectedOption = voiceSelect.selectedOptions[0].getAttribute('data-name');\n  for (i = 0; i < voices.length; i++) {\n    if (voices[i].name === selectedOption) {\n      utterance.voice = voices[i];\n    }\n  }\n  utterance.pitch = pitch.value;\n  utterance.rate = rate.value;\n  synth.speak(utterance);\n}\n"
             ],
             "outputs": []
         },
@@ -356,21 +356,49 @@
         {
             "language": "markdown",
             "source": [
-                "## Pause, Beispiel:\nWenn SpeechSynthesis.pause() aufgerufen wird, wird eine Meldung zurückgegeben, die die Zeichennummer und den Namen angibt, bei denen die Sprachausgabe pausiert wurde."
+                "## Pause, Beispiel:\nBeim Aufruf von `SpeechSynthesis.pause()` wird eine Meldung zurückgegeben, die die Zeichennummer und den Namen angibt, bei denen die Sprachausgabe pausiert wurde."
             ],
             "outputs": []
         },
         {
             "language": "javascript",
             "source": [
-                "utterThis.onpause = function (event) {\n  var char = event.utterance.text.charAt(event.charIndex);\n  console.log('Speech paused at character ' + event.charIndex + ' of \"' +\n    event.utterance.text + '\", which is \"' + char + '\".');\n}\n"
+                "utterance.onpause = function (event) {\n  let char = event.utterance.text.charAt(event.charIndex);\n  console.log('Speech paused at character ' + event.charIndex + ' of \"' +\n    event.utterance.text + '\", which is \"' + char + '\".');\n}\n"
             ],
             "outputs": []
         },
         {
             "language": "javascript",
             "source": [
-                "var synth = window.speechSynthesis;\n\nvar utterance1 = new SpeechSynthesisUtterance('How about we say this now? This is quite a long sentence to say.');\nvar utterance2 = new SpeechSynthesisUtterance('We should say another sentence too, just to be on the safe side.');\n\nsynth.speak(utterance1);\nsynth.speak(utterance2);\n\nsynth.pause(); // pauses utterances being spoken\n"
+                "let synth = window.speechSynthesis;\n\nlet utterance1 = new SpeechSynthesisUtterance('How about we say this now? This is quite a long sentence to say.');\nlet utterance2 = new SpeechSynthesisUtterance('We should say another sentence too, just to be on the safe side.');\n\nsynth.speak(utterance1);\nsynth.speak(utterance2);\n\nsynth.pause(); // pauses utterances being spoken\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "___"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Stop\n\nZum Anhalten der Sprachausgabe wird ein Button mit einem EventHandler verwendet"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "html",
+            "source": [
+                "<button id=\"btn-stop\">Stop</button>"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "const stopBtn = document.getElementById('btn-stop');\n\n//...\n\nstopBtn.addEventListener('click', () =>{\n    speechSynthesis.cancel();\n});\n\n"
             ],
             "outputs": []
         }
