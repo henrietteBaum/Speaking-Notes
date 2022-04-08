@@ -52,6 +52,34 @@
         {
             "language": "markdown",
             "source": [
+                "Beispiel voice-Objekt:"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "html",
+            "source": [
+                "{id:48, voiceURI:\"Paulina\", name:\"Paulina\", lang: \"es-MX\", localService:true},\n{id:52, voiceURI:\"Samantha\", name:\"Samantha\", lang: \"en-US\", localService:true},\n{id:72, voiceURI:\"Google Deutsch\", name:\"Google Deutsch\", lang: \"de-DE\", localService:false} "
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "function setUpVoices() {\n    allVoices = getAllVoices();\n    createSpeakerMenu(allVoices);\n  }\n  \n  function getAllVoices() {\n    let voicesall = speechSynthesis.getVoices();\n    let vuris = [];\n    let voices = [];\n  \n    voicesall.forEach(function(obj,index) {\n      let uri = obj.voiceURI;\n      if (!vuris.includes(uri)) {\n        vuris.push(uri);\n        voices.push(obj);\n      }\n    });\n  \n    voices.forEach(function(obj,index) {obj.id = index;});\n    return voices;\n  }\n  \n  function createSpeakerMenu(voices) {\n    let code = ;\n  \n    voices.forEach(function(vobj,i) {\n      code += `<option value=${vobj.id}>`;\n      code += `${vobj.name} (${vobj.lang})`;\n      code += vobj.voiceURI.includes(\".premium\") ? ' (premium)' : ;\n      code += `</option>`;\n    });\n  \n    speakerMenu.innerHTML = code;\n    speakerMenu.selectedIndex = voiceIndex;\n  }"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
                 "Sind Stimmen-Array und speechSynthesis in einer Variablen gespeichert verkürzt sich der Ausdruck:"
             ],
             "outputs": []
@@ -198,6 +226,160 @@
         {
             "language": "markdown",
             "source": [
+                "___\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "### Problem: Stimmen laden\n\nVgl.: https://dev.to/jankapunkt/cross-browser-speech-synthesis-the-hard-way-and-the-easy-way-353\n\nDas Laden der Stimmen funktioniert in einigen Browsern nicht, u.a. in Safari."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Die Liste mit den Stimmen kann synchron oder asynchron geladen werden. "
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "// sync\nconst voiceList = window.speechSynthesis.getVoices();\nvoiceList"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "// async\nwindow.speechSynthesis.onvoiceschanged = function () {\n    const voiceList = window.speechSynthesis.getVoices()\n    voiceList\n  }"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Beide Versionen kann man in der Browser-Konsole testen. In Safari liefern beide ein leeres Array."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "console.log(`Voices #: ${speechSynthesis.getVoices().length}`)\n\n\nspeechSynthesis.getVoices().forEach((voice) => {\n    console.log(voice.name, voice.lang)\n})"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Alternativ zur Stimmenauswahl lässt sich ggf. die Sprache bestimmen:"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "// assume voices are loaded\nconst getVoicebyLang = lang => speechSynthesis\n  .getVoices()\n  .find(voice => voice.startsWith(lang))\n\nconst german = getVoicebyLang('de')"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "utterance.voice = german // ios required\nutterance.lang = voice.lang // Android Chrome required\nutterance.voiceURI = voice.voiceURI // Who knows if required?"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Eine konkrete Stimme festlegen, betriebssytem-spezifisch:\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "let voice = speechSynthesis.getVoices().find((voice) => {\n    return voice.name == 'Bubbles'\n  }),\n  lyrics = new SpeechSynthesisUtterance(\n      `It's as simple as something that nobody knows\n       That her eyes are as big as her bubbly toes`\n  )\n  lyrics.voice = voice\n  speechSynthesis.speak(lyrics)"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "___"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Sprachauswahl\n\nhttps://css-tricks.com/using-the-web-speech-api-for-multilingual-translations/"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "html",
+            "source": [
+                "<h1>Multilingual Text To Speech</h1>\n<div class=\"uiunit\">\n  <label for=\"speakerMenu\">Voice: </label>\n  <select id=\"speakerMenu\"></select> speaks <span id=\"language\">English.</span>\n  <!-- etc. -->\n</div>"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Den Sprachcode mit einem Namen verbinden:\n\n Jede Sprache wird durch einen zweistelligen Code identifiziert, z. B. \"en\" für Englisch oder \"es\" für Español (Spanisch). Wir nehmen eine einfache Liste dieser Codes und der entsprechenden Sprachen und erstellen ein Array von Objekten der Form: {\"code\": \"pt\", \"name\": \"Portugiesisch\"}. Dann brauchen wir eine Hilfsfunktion, die uns hilft, ein Array von Objekten nach dem Wert einer bestimmten Eigenschaft zu durchsuchen. \n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "function getLanguageTags() {\n    let langs = [\"ar-Arabic\",\"cs-Czech\",\"da-Danish\",\"de-German\",\"el-Greek\",\"en-English\",\"eo-Esperanto\",\"es-Spanish\",\"et-Estonian\",\"fi-Finnish\",\"fr-French\",\"he-Hebrew\",\"hi-Hindi\",\"hu-Hungarian\",\"id-Indonesian\",\"it-Italian\",\"ja-Japanese\",\"ko-Korean\",\"la-Latin\",\"lt-Lithuanian\",\"lv-Latvian\",\"nb-Norwegian Bokmal\",\"nl-Dutch\",\"nn-Norwegian Nynorsk\",\"no-Norwegian\",\"pl-Polish\",\"pt-Portuguese\",\"ro-Romanian\",\"ru-Russian\",\"sk-Slovak\",\"sl-Slovenian\",\"sq-Albanian\",\"sr-Serbian\",\"sv-Swedish\",\"th-Thai\",\"tr-Turkish\",\"zh-Chinese\"];\n    let langobjects = [];\n    for (let i=0;i<langs.length;i++) {\n      let langparts = langs[i].split(\"-\");\n      langobjects.push({\"code\":langparts[0],\"name\":langparts[1]});\n    }\n    return langobjects;\n  }\n  \n  // Generic Utility Functions\n  function searchObjects(array, prop, term, casesensitive = false) {\n    // Searches an array of objects for a given term in a given property\n    // Returns an array of only those objects that test positive\n    let regex = new RegExp(term, casesensitive ? \"\" : \"i\");\n    let newArrayOfObjects = array.filter(obj => regex.test(obj[prop]));\n    return newArrayOfObjects;\n  }"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "// edit step 1\nlet speakBtn, txtFld, speakerMenu, language, allVoices, langtags;\nlet voiceIndex = 0;"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "function init() {\n    speakBtn = qs(\"#speakBtn\");\n    txtFld = qs(\"#txtFld\"); \n    speakerMenu = qs(\"#speakerMenu\");\n    language = qs(\"#language\");\n    langtags = getLanguageTags();\n    speakBtn.addEventListener(\"click\", talk, false);\n    speakerMenu.addEventListener(\"change\", selectSpeaker, false);\n    if (window.speechSynthesis) {\n      if (speechSynthesis.onvoiceschanged !== undefined) {\n        // Chrome gets the voices asynchronously so this is needed\n        speechSynthesis.onvoiceschanged = setUpVoices;\n      }\n      setUpVoices(); // For all the other browsers\n    } else{\n      speakBtn.disabled = true;\n      speakerMenu.disabled = true;\n      qs(\"#warning\").style.display = \"block\";\n    }\n  }"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "// Code for when the user selects a speaker\nfunction selectSpeaker() {\n  voiceIndex = speakerMenu.selectedIndex;\n  let sval = Number(speakerMenu.value);\n  let voice = allVoices[sval];\n  let langcode = voice.lang.substring(0,2);\n  let langcodeobj = searchObjects(langtags, \"code\", langcode);\n  language.innerHTML = langcodeobj[0].name;\n}"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "function talk() {\n    let sval = Number(speakerMenu.value);\n    let u = new SpeechSynthesisUtterance();\n    u.voice = allVoices[sval];\n    u.lang = u.voice.lang;\n    u.text = txtFld.value;\n    u.rate = 0.8;\n    speechSynthesis.speak(u);\n  }"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "___\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
                 "## SpeechSynthesisUtterance\n\nDer vorzulesende Text wird durch Benuthereingabe in einem Textfeld erzeugt und in einer Variablen gespeichert."
             ],
             "outputs": []
@@ -321,6 +503,27 @@
         {
             "language": "markdown",
             "source": [
+                "___"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## querySelector abkürzen und Fehler abfangen:\nQuelle: https://css-tricks.com/using-the-web-speech-api-for-multilingual-translations/"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "let speakBtn, txtFld;\n\nfunction init() {\n  speakBtn = qs(\"#speakBtn\");\n  txtFld = qs(\"#txtFld\");\n  speakBtn.addEventListener(\"click\", talk, false);\n  if (!window.speechSynthesis) {\n    speakBtn.disabled = true;\n    qs(\"#warning\").style.display = \"block\";\n  }\n}\n\nfunction talk() {\n  let u = new SpeechSynthesisUtterance();\n  u.text = txtFld.value;\n  speechSynthesis.speak(u);\n}\n\n// Reusable utility functions\nfunction qs(selectorText) {\n  // Saves lots of typing for those who eschew jQuery\n  return document.querySelector(selectorText);\n}\n\ndocument.addEventListener('DOMContentLoaded', function (e) {\n  try {init();} catch (error) {\n    console.log(\"Data didn't load\", error);\n  }\n});"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
                 "## Sprachausgabe starten\n\nDer Start der Sprachausgabe wird mit einem EventHandler eines Buttons oder der `onSubmit` - Funktion eines Formulars gesteuert. \nDer vorzulesende Text wird durch Benutzereingabe in einem Textfeld erzeugt (oder eine Datei wird geladen) und in einer Variablen gespeichert.\n"
             ],
             "outputs": []
@@ -371,6 +574,13 @@
             "language": "javascript",
             "source": [
                 "let synth = window.speechSynthesis;\n\nlet utterance1 = new SpeechSynthesisUtterance('How about we say this now? This is quite a long sentence to say.');\nlet utterance2 = new SpeechSynthesisUtterance('We should say another sentence too, just to be on the safe side.');\n\nsynth.speak(utterance1);\nsynth.speak(utterance2);\n\nsynth.pause(); // pauses utterances being spoken\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Einige Browser aktualisieren die Eigenschaft speechSynthesis.paused nicht, wenn speechSynthesis.pause() ausgeführt wird (und die Sprache korrekt angehalten wird). Sie müssen diese Zustände dann selbst verwalten.\n"
             ],
             "outputs": []
         },

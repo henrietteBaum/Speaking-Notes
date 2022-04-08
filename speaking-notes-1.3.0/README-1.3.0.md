@@ -24,3 +24,5 @@ Add function to load file into textarea.
 2. Add tooltip for voice-selection. Source for tooltip: [w3schools](https://www.w3schools.com/css/css_tooltip.asp) 
 3. Change position of button `Open file` to footer.
 
+
+Note: voice selection does not work on MacOs!
